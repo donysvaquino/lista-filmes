@@ -27,10 +27,28 @@ export default function Filme() {
         });
     }
     loadFilme();
+
+    return;
   }, []);
 
   if (loading) {
     return <div className="w-full h-full bg-red-500"></div>;
+  }
+
+  function addLista() {
+    if (!localStorage.getItem("@ListaFilmes")) {
+      localStorage.setItem("@ListaFilmes", JSON.stringify([filme]));
+      return console.log("Lista Criada e filme adicionado");
+    }
+
+    const lista = JSON.parse(localStorage.getItem("@ListaFilmes"));
+    if (lista.some((item) => item.id == filme.id)) {
+      return console.warn("Filme já cadastrado");
+    }
+
+    lista.push(filme);
+    localStorage.setItem("@ListaFilmes", JSON.stringify(lista));
+    console.log("Filme adicionado.");
   }
 
   return (
@@ -45,7 +63,7 @@ export default function Filme() {
         />
         <p className="w-150 text-sm">{filme.overview}</p>
         <button
-  
+          onClick={() => addLista()}
           className="bg-green-600 h-12 w-150 flex justify-center items-center rounded-sm my-5"
         >
           Adicionar a Lista

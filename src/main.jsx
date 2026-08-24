@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import Filme from "./pages/Filme.jsx";
 import Error404 from "./pages/Error404.jsx";
+import Lista from "./pages/Lista.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/filmes/:filmeId",
     element: <Filme />,
+  },
+  {
+    path: "/lista",
+    element: <Lista />,
   },
   {
     path: "*",

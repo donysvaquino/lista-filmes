@@ -11,15 +11,6 @@ export default function Header() {
           <li>
             <Link to={"/lista"}>Lista</Link>
           </li>
-          <li>
-            <Link to={"/lista"}>Lista</Link>
-          </li>
-          <li>
-            <Link to={"/lista"}>Lista</Link>
-          </li>
-          <li>
-            <Link to={"/lista"}>Lista</Link>
-          </li>
         </ul>
       </nav>
     </div>
