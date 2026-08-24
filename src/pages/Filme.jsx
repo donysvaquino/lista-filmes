@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Filme() {
   let params = useParams();
@@ -16,14 +17,14 @@ export default function Filme() {
           page: 1,
         },
       })
-      .then((response) => {
+        .then((response) => {
           setFilme(response.data);
           console.log(response.data);
           setLoading(false);
-      })
-      .catch(()=> {
-        console.log("FILME NOT FOUND")
-      })
+        })
+        .catch(() => {
+          console.log("FILME NOT FOUND");
+        });
     }
     loadFilme();
   }, []);
@@ -34,16 +35,22 @@ export default function Filme() {
 
   return (
     <div>
-      <center>
-        <h1>Nome do filme: {filme.title}</h1>
+      <Header />
+      <div className="text-white w-160 mx-auto flex flex-col items-center gap-3">
+        <h1 className="text-2xl">{filme.title}</h1>
         <img
-          className="w-50 h-70"
-          src={`https://image.tmdb.org/t/p/original/${filme.poster_path}/`}
+          className="w-150"
+          src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}/`}
           alt={filme.title}
         />
-      </center>
-      <hr />
-      <p>Descrição do filme: {filme.overview}</p>
+        <p className="w-150 text-sm">{filme.overview}</p>
+        <button
+  
+          className="bg-green-600 h-12 w-150 flex justify-center items-center rounded-sm my-5"
+        >
+          Adicionar a Lista
+        </button>
+      </div>
     </div>
   );
 }
