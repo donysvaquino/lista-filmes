@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "./services/api";
+import { Link } from "react-router-dom";
 
 export default function App() {
   const [filmes, setFilmes] = useState([]);
@@ -16,18 +17,22 @@ export default function App() {
 
       setFilmes(response.data.results.slice(0, 10));
     }
+
     loadFilmes();
   }, []);
+
   return (
-    <div>
+    <div className="flex gap-30 flex-wrap">
       {filmes.map((filme) => {
         return (
           <article key={filme.id}>
             <strong>{filme.title}</strong>
             <img
+              className="w-20 h-30"
               src={`https://image.tmdb.org/t/p/original/${filme.poster_path}/`}
               alt={filme.title}
             />
+            <Link to={`filmes/${filme.id}`}> Ver Detalhes do filme</Link>
           </article>
         );
       })}
